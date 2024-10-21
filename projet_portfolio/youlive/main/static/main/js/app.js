@@ -1,3 +1,4 @@
+// main/static/main/js/app.js
 // Fonction pour vérifier si un élément est visible dans la fenêtre
 function isElementInViewport(el) {
     const rect = el.getBoundingClientRect();

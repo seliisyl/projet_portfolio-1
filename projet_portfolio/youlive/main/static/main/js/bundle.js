@@ -1,0 +1,32 @@
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./youlive/main/static/main/js/app.js":
+/*!********************************************!*\
+  !*** ./youlive/main/static/main/js/app.js ***!
+  \********************************************/
+/***/ (() => {
+
+eval("// main/static/main/js/app.js\r\n// Fonction pour vérifier si un élément est visible dans la fenêtre\r\nfunction isElementInViewport(el) {\r\n    const rect = el.getBoundingClientRect();\r\n    return (\r\n        rect.top >= 0 &&\r\n        rect.left >= 0 &&\r\n        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&\r\n        rect.right <= (window.innerWidth || document.documentElement.clientWidth)\r\n    );\r\n}\r\n\r\n// Fonction pour ajouter la classe 'visible' aux éléments qui deviennent visibles\r\nfunction checkVisibleElements() {\r\n    const fadeInElements = document.querySelectorAll('.fade-in');\r\n    fadeInElements.forEach(element => {\r\n        if (isElementInViewport(element)) {\r\n            element.classList.add('visible');\r\n        }\r\n    });\r\n}\r\n\r\n// Ajouter des écouteurs pour la gestion de la visibilité au défilement, redimensionnement, et chargement\r\nwindow.addEventListener('scroll', checkVisibleElements);\r\nwindow.addEventListener('resize', checkVisibleElements);\r\nwindow.addEventListener('load', checkVisibleElements);\r\n\r\ndocument.addEventListener('DOMContentLoaded', () => {\r\n    // Boutons d'événements\r\n    const eventButtons = document.querySelectorAll('.event-button');\r\n    if (eventButtons.length > 0) {\r\n        eventButtons.forEach(button => {\r\n            button.addEventListener('click', function () {\r\n                const eventId = this.getAttribute('data-event-id');\r\n                const accessEventSection = document.getElementById('access-event');\r\n                const eventIdInput = document.getElementById('eventId');\r\n                if (accessEventSection && eventIdInput) {\r\n                    accessEventSection.style.display = 'block';\r\n                    eventIdInput.value = eventId;\r\n                }\r\n            });\r\n        });\r\n    }\r\n\r\n    // Formulaire d'accès à l'événement\r\n    const accessForm = document.getElementById('accessForm');\r\n    if (accessForm) {\r\n        accessForm.addEventListener('submit', function(e) {\r\n            e.preventDefault();\r\n            const eventId = document.getElementById('eventId').value;\r\n            const password = document.getElementById('password').value;\r\n\r\n            if (eventId === 'youlive1' && password === 'youlive2') {\r\n                window.location.href = `eventPage.html?eventId=${eventId}`;\r\n            } else {\r\n                alert('Identifiant ou mot de passe incorrect');\r\n            }\r\n        });\r\n    }\r\n\r\n    // Charger les détails de l'événement si nous sommes sur la page de l'événement\r\n    const urlParams = new URLSearchParams(window.location.search);\r\n    const eventId = urlParams.get('eventId');\r\n    if (eventId) {\r\n        loadEventDetails(eventId);\r\n    }\r\n});\r\n\r\n// Fonction pour charger les détails de l'événement\r\nfunction loadEventDetails(eventId) {\r\n    const events = [\r\n        { id: '1', streamUrls: ['https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID1', 'https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID2'], videos: ['video1.mp4', 'video2.mp4'], photos: ['images/event1.jpg', 'images/event2.jpg'] },\r\n        { id: '2', streamUrls: ['https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID1', 'https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID2'], videos: ['video3.mp4', 'video4.mp4'], photos: ['images/event3.jpg', 'images/event4.jpg'] },\r\n        { id: '3', streamUrls: ['https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID1', 'https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID2'], videos: ['video5.mp4', 'video6.mp4'], photos: ['images/event5.jpg', 'images/event6.jpg'] }\r\n    ];\r\n\r\n    const event = events.find(e => e.id === eventId);\r\n\r\n    if (event) {\r\n        const streamElements = document.querySelectorAll('.stream');\r\n        const videoGallery = document.getElementById('videoGallery');\r\n        const photoGallery = document.getElementById('photoGallery');\r\n        \r\n        // Initialisation des streamings\r\n        if (streamElements.length > 0) {\r\n            streamElements.forEach((el, index) => {\r\n                el.src = event.streamUrls[index];\r\n                el.addEventListener('click', () => {\r\n                    el.classList.toggle('fullscreen');\r\n                });\r\n            });\r\n        }\r\n\r\n        // Charger la galerie vidéo\r\n        if (videoGallery) {\r\n            videoGallery.innerHTML = event.videos.map(video =>\r\n                `<video width=\"300\" controls>\r\n                    <source src=\"${video}\" type=\"video/mp4\">\r\n                    Votre navigateur ne supporte pas la lecture de vidéos.\r\n                </video>`\r\n           ).join('');\r\n        }\r\n\r\n        // Charger la galerie de photos\r\n        if (photoGallery) {\r\n            photoGallery.innerHTML = event.photos.map(photo =>\r\n                `<img src=\"${photo}\" alt=\"Photo de l'événement\" width=\"150\">`\r\n            ).join('');\r\n        }\r\n    }\r\n}\r\n\r\n\n\n//# sourceURL=webpack://projet_portfolio/./youlive/main/static/main/js/app.js?");
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = {};
+/******/ 	__webpack_modules__["./youlive/main/static/main/js/app.js"]();
+/******/ 	
+/******/ })()
+;
