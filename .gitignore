@@ -3,3 +3,8 @@ env/
 
 __pycache__/
 
+package-lock.json
+package.json
+webpack.config.js
+
+node_modules/
