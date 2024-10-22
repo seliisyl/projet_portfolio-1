@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prestations - YOULIVE</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}"> <!-- Lien vers le fichier CSS pour le style -->
+    <script src="{% static 'main/js/app.js' %}"></script> <!-- Lien vers le fichier JavaScript pour la logique -->
+</head>
+<body>
+    <header>
+        <h1>Nos Prestations</h1>
+        <nav>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="{% url 'index' %}">Accueil</a></li> <!-- Lien vers la page d'accueil --> 
+                <li class="nav-item"><a href="{% url 'Événements' %}">Événements</a></li> <!-- Lien vers la page des événements --> 
+                <li class="nav-item"><a href="{% url 'Galerie - YOULIVE' %}">Galerie</a></li> <!-- Lien vers la galerie --> 
+                <li class="nav-item"><a href="{% url 'Prestations - YOULIVE' %}">Prestations</a></li> <!-- Lien vers les prestations --> 
+                <li class="nav-item"><a href="{% url 'Contact - YOULIVE' %}">Contact</a></li> <!-- Lien vers les informations de contact -->
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Ce que nous proposons</h2>
+        <ul>
+            <li>Organisation d'événements</li>
+            <li>Streaming en direct</li>
+            <li>Création de capsules temporelles numériques</li>
+            <li>Gestion de la galerie de photos et vidéos</li>
+        </ul>
+    </div>
+
+    <footer>
+        <p>© 2024 YOULIVE. Tous droits réservés.</p>
+    </footer>
+
+</body>
+</html>
+

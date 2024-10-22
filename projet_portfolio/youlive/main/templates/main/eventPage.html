@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails de l'Événement - YOULIVE</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+    <script src="{% static 'main/js/app.js' %}"></script>
+</head>
+<body>
+    <header>
+        <h1>Détails de l'Événement</h1>
+        <nav>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="{% url 'index' %}">Accueil</a></li> <!-- Lien vers la page d'accueil -->
+                <li class="nav-item"><a href="{% url 'Événements' %}">Événements</a></li> <!-- Lien vers la page des événements -->
+                <li class="nav-item"><a href="{% url 'Galerie - YOULIVE' %}">Galerie</a></li> <!-- Lien vers la galerie -->
+                <li class="nav-item"><a href="{% url 'Prestations - YOULIVE' %}">Prestations</a></li> <!-- Lien vers les prestations -->
+                <li class="nav-item"><a href="{% url 'Contact - YOULIVE' %}">Contact</a></li> <!-- Lien vers les informations de contact -->
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- Section pour le Live Streaming -->
+        <section id="live-stream">
+            <h2>Live Streaming</h2>
+            <iframe id="stream" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+        </section>
+
+        <!-- Section pour les Photos et Vidéos -->
+        <section id="media-gallery">
+            <h2>Galerie des Invités</h2>
+            <div id="videoGallery">
+                <!-- Les vidéos téléchargées s'affichent ici -->
+            </div>
+            <div id="photoGallery">
+                <!-- Photos ajoutées ici par JavaScript -->
+            </div>
+        </section>
+
+        <!-- Section pour le Chat -->
+        <section id="chat">
+            <h2>Chat en Direct</h2>
+            <div id="chatbox">
+                <!-- Messages du chat apparaîtront ici -->
+                <div id="messages"></div>
+                <input type="text" id="chatInput" placeholder="Tapez votre message ici...">
+                <button id="sendChat">Envoyer</button>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2024 YOULIVE. Tous droits réservés.</p>
+    </footer>
+
+</body>
+</html>
