@@ -14,10 +14,10 @@ def gallery(request):
 def events(request):
     return render(request, 'main/events.html')
 
-def eventPage(request):
+def event_page(request):
     return render(request, 'main/eventPage.html')
 
-def authEvent(request):
+def auth_event(request):
     return render(request, 'main/authEvent.html')
 
 def services(request):

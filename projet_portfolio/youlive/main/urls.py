@@ -6,7 +6,7 @@ urlpatterns = [
     path('contact/', views.contact, name='Contact - YOULIVE'),
     path('gallery/', views.gallery, name='Galerie - YOULIVE'),
     path('events/', views.events, name='Événements'),
-    path('eventPage/', views.eventPage, name='Détails de l\'Événement - YOULIVE'),
-    path('authEvent/', views.authEvent, name='Authentificationde l\'événement'),
+    path('events/eventPage.html/', views.event_page, name='Détails de l\'Événement - YOULIVE'),
+    path('eventPage/authEvent.html/', views.auth_event, name='Authentificationde l\'événement - YOULIVE'),
     path('services/', views.services, name='Prestations - YOULIVE'),
 ]
