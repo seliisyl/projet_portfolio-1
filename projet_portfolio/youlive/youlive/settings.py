@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'youlive',
 ]
 
 MIDDLEWARE = [
@@ -49,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'youlive.urls'
+ROOT_URLCONF = 'youlive.youlive.urls'
 
 TEMPLATES = [
     {
@@ -67,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'youlive.wsgi.application'
+WSGI_APPLICATION = 'youlive.youlive.wsgi.application'
 
 
 # Database
@@ -117,7 +118,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'main', 'static')
+    os.path.join(BASE_DIR, 'main', 'static'),
 ]
 
 # Default primary key field type
