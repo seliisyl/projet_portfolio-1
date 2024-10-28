@@ -40,12 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
-    }
+    };
 
     // Formulaire d'accès à l'événement
     const accessForm = document.getElementById('accessForm');
     if (accessForm) {
-        accessForm.addEventListener('submit', function(e) {
+        accessForm.addEventListener('submit', function (e) {
             e.preventDefault();
             const eventId = document.getElementById('eventId').value;
             const password = document.getElementById('password').value;
@@ -64,6 +64,96 @@ document.addEventListener('DOMContentLoaded', () => {
     if (eventId) {
         loadEventDetails(eventId);
     }
+
+    // image du carousel
+    const imagesArray = [
+        "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=150&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://images.unsplash.com/photo-1472653431158-6364773b2a56?q=80&w=150&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://images.unsplash.com/photo-1531058020387-3be344556be6?q=80&w=150&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=150&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=150&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?q=80&w=150&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?q=80&w=150&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://images.unsplash.com/photo-1602631985686-1bb0e6a8696e?q=80&w=150&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ]
+
+    // DOM
+    const slider = document.querySelector('.slider');
+    const indicatorsContainer = document.querySelector('.slider_indicators');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let currentIndex = 0;
+    const visibleSlides = 4;
+
+
+    // insert images et les indicateurs pour chaque image
+    imagesArray.forEach((imageSrc, index) => {
+        const imageElement = document.createElement('img');
+        imageElement.src = imageSrc;
+        imageElement.id = `slide-${index}`;
+        imageElement.classList.add('slide');
+        slider.appendChild(imageElement);
+
+        const indicatorElement = document.createElement('a');
+        indicatorElement.href = `#slide-${index}`;
+        indicatorElement.classList.add("indicator");
+        if (index < visibleSlides) {
+            indicatorElement.classList.add('active');
+        }
+        indicatorsContainer.appendChild(indicatorElement);
+    });
+
+    // Mettre à jour la largeur du slider
+    const slideWidth = slider.clientWidth / visibleSlides;
+
+    // Met a jour l'affichage des boutons
+    function updateButtons() {
+        prevBtn.style.display = currentIndex === 0 ? 'none' : 'block';
+        nextBtn.style.display = currentIndex >= imagesArray.length - visibleSlides ? 'none' : 'block';
+    }
+
+    //style indicators dynamique
+    function updateIndicators() {
+        const allIndicators = document.querySelectorAll('.indicator');
+        allIndicators.forEach((indicator, index) => {
+            if (index >= currentIndex && index < currentIndex + visibleSlides) {
+                indicator.classList.add('active');
+            } else {
+                indicator.classList.remove('active');
+            }
+        });
+    }
+
+    updateButtons();
+    updateIndicators();
+
+    // Boutons de navigation Précédent et Suivant
+    prevBtn.addEventListener('click', () => {
+        currentIndex = Math.max(currentIndex - visibleSlides, 0);
+        slider.scrollTo({
+            left: currentIndex * slideWidth,
+            behavior: 'smooth'
+        });
+        updateButtons();
+        updateIndicators();
+    });
+    nextBtn.addEventListener('click', () => {
+        currentIndex = Math.min(currentIndex + visibleSlides, imagesArray.length - visibleSlides);
+        slider.scrollTo({
+            left: currentIndex * slideWidth,
+            behavior: 'smooth'
+        });
+        updateButtons();
+        updateIndicators();
+    });
+
+    // gestion de la navigation
+    slider.addEventListener('scroll', () => {
+        const currentScrollLevel = slider.scrollLeft;
+        currentIndex = Math.round(currentScrollLevel / slideWidth);
+        updateButtons();
+        updateIndicators();
+    });
 });
 
 // Fonction pour charger les détails de l'événement
@@ -80,7 +170,7 @@ function loadEventDetails(eventId) {
         const streamElements = document.querySelectorAll('.stream');
         const videoGallery = document.getElementById('videoGallery');
         const photoGallery = document.getElementById('photoGallery');
-        
+
         // Initialisation des streamings
         if (streamElements.length > 0) {
             streamElements.forEach((el, index) => {
@@ -98,7 +188,7 @@ function loadEventDetails(eventId) {
                     <source src="${video}" type="video/mp4">
                     Votre navigateur ne supporte pas la lecture de vidéos.
                 </video>`
-           ).join('');
+            ).join('');
         }
 
         // Charger la galerie de photos

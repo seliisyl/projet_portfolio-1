@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -5,8 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil - YOULIVE</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    {% load static %}
+
     <link rel="stylesheet" href="{% static 'main/css/style.css' %}"> <!-- Chemin vers le CSS -->
     <script src="{% static 'main/js/app.js' %}"></script> <!-- Lien vers le fichier JavaScript pour la logique -->
 </head>
@@ -17,89 +17,29 @@
         <nav>
             <ul class="nav-list">
                 <li class="nav-item"><a href="{% url 'index' %}">Accueil</a></li> <!-- Lien vers la page d'accueil -->
-                <li class="nav-item"><a href="{% url 'Événements' %}">Événements</a></li> <!-- Lien vers la page des événements -->
-                <li class="nav-item"><a href="{% url 'Galerie - YOULIVE' %}">Galerie</a></li> <!-- Lien vers la galerie -->
-                <li class="nav-item"><a href="{% url 'Prestations - YOULIVE' %}">Prestations</a></li> <!-- Lien vers les prestations -->
+                <li class="nav-item"><a href="{% url 'Événements' %}">Événements</a></li>
+                <!-- Lien vers la page des événements -->
+                <li class="nav-item"><a href="{% url 'Galerie - YOULIVE' %}">Galerie</a></li>
+                <!-- Lien vers la galerie -->
+                <li class="nav-item"><a href="{% url 'Prestations - YOULIVE' %}">Prestations</a></li>
+                <!-- Lien vers les prestations -->
                 <li class="nav-item"><a href="{% url 'Contact - YOULIVE' %}">Contact</a></li>
                 <!-- Lien vers les informations de contact -->
             </ul>
         </nav>
     </header>
-
-    <div class="row">
-        <div id="carousel" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carousel" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel" data-slide-to="1"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="d-none d-lg-block">
-                        <div class="slide-box">
-                            <img src="https://picsum.photos/285/200/?image=0&random" alt="First slide">
-                            <img src="https://picsum.photos/285/200/?image=1&random" alt="First slide">
-                            <img src="https://picsum.photos/285/200/?image=2&random" alt="First slide">
-                            <img src="https://picsum.photos/285/200/?image=3&random" alt="First slide">
-                        </div>
-                    </div>
-                    <div class="d-none d-md-block d-lg-none">
-                        <div class="slide-box">
-                            <img src="https://picsum.photos/240/200/?image=0&random" alt="First slide">
-                            <img src="https://picsum.photos/240/200/?image=1&random" alt="First slide">
-                            <img src="https://picsum.photos/240/200/?image=2&random" alt="First slide">
-                        </div>
-                    </div>
-                    <div class="d-none d-sm-block d-md-none">
-                        <div class="slide-box">
-                            <img src="https://picsum.photos/270/200/?image=0&random" alt="First slide">
-                            <img src="https://picsum.photos/270/200/?image=1&random" alt="First slide">
-                        </div>
-                    </div>
-                    <div class="d-block d-sm-none">
-                        <img class="d-block w-100" src="https://picsum.photos/600/400/?image=0&random"
-                            alt="First slide">
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="d-none d-lg-block">
-                        <div class="slide-box">
-                            <img src="https://picsum.photos/285/200/?image=4&random" alt="Second slide">
-                            <img src="https://picsum.photos/285/200/?image=5&random" alt="Second slide">
-                            <img src="https://picsum.photos/285/200/?image=6&random" alt="Second slide">
-                            <img src="https://picsum.photos/285/200/?image=7&random" alt="Second slide">
-                        </div>
-                    </div>
-                    <div class="d-none d-md-block d-lg-none">
-                        <div class="slide-box">
-                            <img src="https://picsum.photos/240/200/?image=3&random" alt="Second slide">
-                            <img src="https://picsum.photos/240/200/?image=4&random" alt="Second slide">
-                            <img src="https://picsum.photos/240/200/?image=5&random" alt="Second slide">
-                        </div>
-                    </div>
-                    <div class="d-none d-sm-block d-md-none">
-                        <div class="slide-box">
-                            <img src="https://picsum.photos/270/200/?image=2&random" alt="Second slide">
-                            <img src="https://picsum.photos/270/200/?image=3&random" alt="Second slide">
-                        </div>
-                    </div>
-                    <div class="d-block d-sm-none">
-                        <img class="d-block w-100" src="https://picsum.photos/600/400/?image=1&random"
-                            alt="Second slide">
-                    </div>
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    </div>
-
     <div class="container">
+        <div class="carousel">
+            <ion-icon name="chevron-back-outline" class="nav-btp" id="prevBtn"></ion-icon>
+            <div class="slider" id="slider">
+                <!-- Images dynamique generées par app.js -->
+            </div>
+            <ion-icon name="chevron-forward-outline" class="nav-btp" id="nextBtn"></ion-icon>
+            
+            <div class="slider_indicators" id="indicators">
+                <!-- Indicateurs dynamiques générés par app.js -->
+            </div>
+        </div>
 
         <h2 class="fade-in">Qu'est-ce que YOULIVE ?</h2>
         <p class="fade-in">Découvrez YOULIVE, une plateforme interactive révolutionnaire pour vos événements. Avec notre
@@ -142,6 +82,8 @@
     </footer>
 
     <script src="{% static 'main/js/app.js' %}"></script> <!-- Lien vers le fichier JavaScript pour la logique -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>
