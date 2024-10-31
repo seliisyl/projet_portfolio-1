@@ -21,8 +21,8 @@ function checkVisibleElements() {
 }
 
 // Ajouter des écouteurs pour la gestion de la visibilité au défilement, redimensionnement, et chargement
-window.addEventListener('scroll', checkVisibleElements);
-window.addEventListener('resize', checkVisibleElements);
+window.addEventListener('scroll', checkVisibleElements, { passive: true });
+window.addEventListener('resize', checkVisibleElements, { passive: true });
 window.addEventListener('load', checkVisibleElements);
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const eventId = urlParams.get('eventId');
     console.log("eventId trouveé dans l'URL :", eventId);
+
     if (eventId) {
         loadEventDetails(eventId);
     } else {
@@ -162,78 +163,88 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Fonction pour charger les détails de l'événement
 function loadEventDetails(eventId) {
-    console.log("Chargement des détails de l\'événement avec l\'Id:", eventId);
+    try {
+        console.log("Chargement des détails de l\'événement avec l\'Id:", eventId);
 
-    const events = [
-        {
-            id: 'youlive1',
-            streamUrls: [
-                'https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID1',
-                'https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID2'
-            ],
-            videos: ['video1.mp4', 'video2.mp4'],
-            photos: ['images/event1.jpg', 'images/event2.jpg']
-        },
-        {
-            id: '2',
-            streamUrls: [
-                'https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID1',
-                'https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID2'
-            ],
-            videos: ['video3.mp4', 'video4.mp4'],
-            photos: ['images/event3.jpg', 'images/event4.jpg']
-        },
-        {
-            id: '3',
-            streamUrls: [
-                'https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID1',
-                'https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID2'
-            ],
-            videos: ['video5.mp4', 'video6.mp4'],
-            photos: ['images/event5.jpg', 'images/event6.jpg']
+        const events = [
+            {
+                id: 'youlive1',
+                streamUrls: [
+                    'https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID1',
+                    'https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID2'
+                ],
+                videos: [
+                    "https://www.w3schools.com/html/mov_bbb.mp4",
+                    "https://www.w3schools.com/html/movie.mp4"
+                ],
+                photos: [
+                    "https://via.placeholder.com/150",
+                    "https://via.placeholder.com/200"
+                ]
+            },
+            {
+                id: '2',
+                streamUrls: [
+                    'https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID1',
+                    'https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID2'
+                ],
+                videos: ['video3.mp4', 'video4.mp4'],
+                photos: ['images/event3.jpg', 'images/event4.jpg']
+            },
+            {
+                id: '3',
+                streamUrls: [
+                    'https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID1',
+                    'https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID2'
+                ],
+                videos: ['video5.mp4', 'video6.mp4'],
+                photos: ['images/event5.jpg', 'images/event6.jpg']
+            }
+        ];
+
+        const event = events.find(e => e.id === eventId);
+        if (!event) {
+            console.error("L'événement n'a pas été trouvé avec l'Id:", eventId);
+            return;
         }
-    ];
+        console.log("Détails de l'événement trouvé:", eventId);
 
-    const event = events.find(e => e.id === eventId);
-    if (!event) {
-        console.error("L'événement n'a pas été trouvé avec l'Id:", eventId);
-        return;
-    }
-    console.log("Détails de l'événement trouvé:", event);
+        const streamIframe1 = document.getElementById('stream1');
+        const streamIframe2 = document.getElementById('stream2');
 
-    const streamIframe1 = document.getElementById('stream1');
-    const streamIframe2 = document.getElementById('stream2');
+        // Elements de streaming
+        if (streamIframe1 && streamIframe2) {
+            streamIframe1.src = event.streamUrls[0] || '';
+            streamIframe2.src = event.streamUrls[1] || '';
+            console.log("Iframes de streaming mis à jour");
+        } else {
+            console.error("Iframes de streaming 'stream1' ou 'stream2' sont introuvables");
+        }
 
-    // Elements de streaming
-    if (streamIframe1 && streamIframe2) {
-        streamIframe1.src = event.streamUrls[0] || '';
-        streamIframe2.src = event.streamUrls[1] || '';
-        console.log("Iframes de streaming mis à jour");
-    } else {
-        console.error("Iframes de streaming 'stream1' ou 'stream2' sont introuvables");
-    }
-
-    const videoGallery = document.getElementById('videoGallery');
-    if (videoGallery) {
-        videoGallery.innerHTML = event.videos.map(video =>
-            `<video width="300" controls>
+        const videoGallery = document.getElementById('videoGallery');
+        if (videoGallery && event.videos && event.videos.length > 0) {
+            videoGallery.innerHTML = event.videos.map(video =>
+                `<video width="300" controls>
                     <source src="${video}" type="video/mp4">
                     Votre navigateur ne supporte pas la lecture de vidéos.
                 </video>`
-        ).join('');
-        console.log("Galerie de vidéos mise à jour");
-    } else {
-        console.error("Galerie de vidéos 'videoGallery' non trouvée");
-    }
+            ).join('');
+            console.log("Galerie de vidéos mise à jour");
+        } else {
+            console.warn("Galerie de vidéos 'videoGallery' non trouvée");
+        }
 
-    const photoGallery = document.getElementById('photoGallery');
-    if (photoGallery) {
-        photoGallery.innerHTML = event.photos.map(photo =>
-            `<img src="${photo}" alt="Photo de l'événement" width="150">`
-        ).join('');
-        console.log("Galerie de photos mise à jour");
-    } else {
-        console.error("L'événement n'a pas été trouvé avec l'Id:", eventId);
+        const photoGallery = document.getElementById('photoGallery');
+        if (photoGallery && event.photos && event.photos.length > 0) {
+            photoGallery.innerHTML = event.photos.map(photo =>
+                `<img src="${photo}" alt="Photo de l'événement" width="150">`
+            ).join('');
+            console.log("Galerie de photos mise à jour");
+        } else {
+            console.warn("L'événement n'a pas été trouvé avec l'Id:", eventId);
+        }
+    } catch (error) {
+        console.error("Une erreur s'est produite lors du chargement des détails de l'événement", error);
     }
 }
 
