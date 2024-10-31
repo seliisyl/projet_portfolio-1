@@ -232,4 +232,20 @@ footer {
 .event-button:hover {
     background-color: #333333; /* Changement de couleur au survol */
 }
+.social-media {
+    margin-top: 10px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.social-icon i {
+    font-size: 24px;
+    color: var(--texte-blanc); /* Icônes blanches sur fond noir */
+    transition: color 0.3s ease;
+}
+
+.social-icon i:hover {
+    color: var(--beige-clair); /* Couleur beige clair au survol */
+}
 
