@@ -159,6 +159,13 @@ document.addEventListener('DOMContentLoaded', () => {
         updateButtons();
         updateIndicators();
     });
+
+    const footer = document.querySelector('footer');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) { // ajustez selon votre page
+            footer.classList.add('visible');
+        }
+    });
 });
 
 // Fonction pour charger les détails de l'événement
