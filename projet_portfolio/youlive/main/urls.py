@@ -9,6 +9,6 @@ urlpatterns = [
     path('events/eventPage.html/', views.event_page, name='events - YOULIVE'),
     path('eventPage/authEvent.html/', views.auth_event, name='Authentification de l\'événement - YOULIVE'),
     path('services/', views.services, name='Prestations - YOULIVE'),
-    path('private_Policy/', views.private_policy, name='Politique de confidentialité - YOULIVE'),
+    path('private_Policy/', views.private_policy, name='Private Policy - YOULIVE'),
     path('terms_of_service/', views.terms_of_service, name='Terms of Service - YOULIVE'),
 ]
