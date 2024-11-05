@@ -236,4 +236,10 @@ function loadEventDetails(eventId) {
         console.error("L'événement n'a pas été trouvé avec l'Id:", eventId);
     }
 }
+const mobileMenu = document.getElementById('mobile-menu');
+const navList = document.querySelector('.nav-list');
+
+mobileMenu.addEventListener('click', () => {
+    navList.classList.toggle('active');
+});
 
