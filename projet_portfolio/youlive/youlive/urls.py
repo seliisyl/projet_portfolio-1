@@ -21,5 +21,6 @@ from youlive.youlive import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('youlive.main.urls')),
+    path('api/', include('youlive.main.urls')),
 ]
 

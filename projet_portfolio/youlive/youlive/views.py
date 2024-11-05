@@ -22,3 +22,9 @@ def auth_event(request):
 
 def services(request):
     return render(request, 'main/services.html')
+
+def private_policy(request):
+    return render(request, 'main/private_policy.html')
+
+def terms_of_service(request):
+    return render(request, 'main/terms_of_service.html')

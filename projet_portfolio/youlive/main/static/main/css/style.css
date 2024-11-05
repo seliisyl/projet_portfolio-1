@@ -132,7 +132,7 @@ h1, h2 {
     }
 
     .slider {
-        width: 750%;
+        width: 150%;
     }
 
     .nav-btn {
@@ -151,7 +151,7 @@ label {
     margin-bottom: 5px;
 }
 
-input {
+input, textarea {
     margin-bottom: 15px;
     padding: 10px;
     font-size: 16px;
@@ -159,7 +159,7 @@ input {
     border: 1px solid var(--bordure);
 }
 
-input:focus {
+input:focus, textarea:focus {
     border-color: var(--texte-noir); /* Bordure noire au focus */
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Ombre légère au focus */
 }
@@ -177,16 +177,6 @@ button {
 
 button:hover {
     background-color: #333333; /* Légère variation de noir au survol */
-}
-
-footer {
-    background-color: var(--texte-noir); /* Footer noir */
-    color: var(--texte-blanc); /* Texte du footer en blanc */
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
 }
 
 /* CSS pour l'animation de l'apparition du texte */
@@ -232,15 +222,36 @@ footer {
 .event-button:hover {
     background-color: #333333; /* Changement de couleur au survol */
 }
+
+footer {
+    background-color: var(--texte-noir); /* Footer noir */
+    color: var(--texte-blanc); /* Texte du footer en blanc */
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+footer.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .social-media {
     margin-top: 10px;
     display: flex;
     gap: 15px;
-    justify-content: center;
+    justify-content: start;
 }
 
 .social-icon i {
-    font-size: 24px;
+    font-size: 1.5em;
     color: var(--texte-blanc); /* Icônes blanches sur fond noir */
     transition: color 0.3s ease;
 }
@@ -248,6 +259,7 @@ footer {
 .social-icon i:hover {
     color: var(--beige-clair); /* Couleur beige clair au survol */
 }
+<<<<<<< HEAD
 .menu-toggle {
     display: none; /* Masque le menu par défaut */
     cursor: pointer; /* Change le curseur pour indiquer qu'il est cliquable */
@@ -267,6 +279,37 @@ footer {
 
     .menu-toggle {
         display: block; /* Affiche le bouton hamburger */
+=======
+.footer-links {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+.footer-links a {
+    color: var(--texte-blanc); /* Liens blancs */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.footer-links a:hover {
+    color: var(--beige-clair); /* Couleur beige clair au survol */
+}
+
+/* Media queries pour les écrans plus petits */
+@media (max-width: 680px) {
+    footer {
+        flex-direction: row; /* Aligner les éléments verticalement */
+        text-align: center;
+        align-items: center;
+    }
+
+    .social-media {
+        margin-top: 10px;
+    }
+    .footer-links {
+        flex-direction: row;
+        gap: 10px;
+>>>>>>> 1c768fd557c7a2db4d06427616127a14b3780750
     }
 }
 

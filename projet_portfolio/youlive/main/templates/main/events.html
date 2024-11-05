@@ -1,10 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Événements</title>
-    {% load static %}
+
+    <link rel="icon" type="x-icon" href="{% static 'main/favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
     <script src="{% static 'main/js/app.js' %}"></script>
 </head>
@@ -57,6 +59,13 @@
             <a href="#"><i class="fab fa-twitter"></i></a>
             <a href="#"><i class="fab fa-linkedin-in"></i></a>
         </div>
+<<<<<<< HEAD
+=======
+        <div class="footer-links">
+            <a href="{% url 'Private Policy - YOULIVE' %}">Politique de confidentialité</a>
+            <a href="{% url 'Terms of Service - YOULIVE' %}">Conditions d'utilisation</a>
+        </div>
+>>>>>>> 1c768fd557c7a2db4d06427616127a14b3780750
     </footer>
     
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
