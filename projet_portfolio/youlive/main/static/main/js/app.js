@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Identifiant ou mot de passe incorrect');
             }
         });
-    };
+    }
 
     // image du carousel
     const imagesArray = [
@@ -177,16 +177,16 @@ function loadEventDetails(eventId) {
             {
                 id: 'youlive1',
                 streamUrls: [
-                    'https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID1',
+                    'https://studio.youtube.com/channel/UCLRhq61iubIB4x4M-sjL5vw/livestreaming',
                     'https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID2'
                 ],
                 videos: [
-                    "https://www.w3schools.com/html/mov_bbb.mp4",
-                    "https://www.w3schools.com/html/movie.mp4"
+                    "https://via.placeholder.com/150",
+                    'video2.mp4'
                 ],
                 photos: [
-                    "https://via.placeholder.com/150",
-                    "https://via.placeholder.com/200"
+                    "https://www.w3schools.com/html/mov_bbb.mp4",
+                    'images/event2.jpg'
                 ]
             },
             {
@@ -251,7 +251,7 @@ function loadEventDetails(eventId) {
             console.warn("L'événement n'a pas été trouvé avec l'Id:", eventId);
         }
     } catch (error) {
-        console.error("Une erreur s'est produite lors du chargement des détails de l'événement", error);
+        console.error("Erreur lors du chargement des détails de l'événement:", error);
     }
-}
+};
 
