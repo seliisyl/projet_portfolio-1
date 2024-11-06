@@ -259,6 +259,27 @@ footer.visible {
 .social-icon i:hover {
     color: var(--beige-clair); /* Couleur beige clair au survol */
 }
+<<<<<<< HEAD
+.menu-toggle {
+    display: none; /* Masque le menu par défaut */
+    cursor: pointer; /* Change le curseur pour indiquer qu'il est cliquable */
+}
+
+/* Styles pour les petits écrans */
+@media (max-width: 768px) {
+    .nav-list {
+        display: none; /* Masque le menu de navigation */
+        flex-direction: column; /* Affiche les éléments en colonne */
+        width: 100%; /* Prend toute la largeur */
+    }
+
+    .nav-list.active {
+        display: flex; /* Affiche le menu lorsque actif */
+    }
+
+    .menu-toggle {
+        display: block; /* Affiche le bouton hamburger */
+=======
 .footer-links {
     display: flex;
     gap: 15px;
@@ -288,6 +309,7 @@ footer.visible {
     .footer-links {
         flex-direction: row;
         gap: 10px;
+>>>>>>> 1c768fd557c7a2db4d06427616127a14b3780750
     }
 }
 

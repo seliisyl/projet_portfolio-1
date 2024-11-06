@@ -253,5 +253,11 @@ function loadEventDetails(eventId) {
     } catch (error) {
         console.error("Erreur lors du chargement des détails de l'événement:", error);
     }
-};
+}
+const mobileMenu = document.getElementById('mobile-menu');
+const navList = document.querySelector('.nav-list');
+
+mobileMenu.addEventListener('click', () => {
+    navList.classList.toggle('active');
+});
 
