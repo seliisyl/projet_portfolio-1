@@ -181,12 +181,12 @@ function loadEventDetails(eventId) {
                     'https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID2'
                 ],
                 videos: [
-                    "https://via.placeholder.com/150",
-                    'video2.mp4'
+                    "https://www.w3schools.com/html/mov_b.mp4",
+                    'https://www.w3schools.com/html/mov_bbb.mp4'
                 ],
                 photos: [
-                    "https://www.w3schools.com/html/mov_bbb.mp4",
-                    'images/event2.jpg'
+                    "https://via",
+                    'https://via.placeholder.com/150'
                 ]
             },
             {
