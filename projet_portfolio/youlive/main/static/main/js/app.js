@@ -165,7 +165,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.scrollY > 300) { // ajustez selon votre page
             footer.classList.add('visible');
         }
-    });
+    })
+
+    const menuToggle = document.getElementById('mobile-menu');
+    const navList = document.querySelector('.nav-list');
+
+    if (menuToggle && navList) {
+        menuToggle.addEventListener('click', () => {
+            console.log('menuToggle cliqué');
+            navList.classList.toggle('active');
+            console.log('class active ajoutée :', navList.classList.contains('active'));
+        });
+    } else {
+        console.error('menuToggle ou navList introuvable');
+    }
 });
 
 // Fonction pour charger les détails de l'événement
@@ -253,11 +266,4 @@ function loadEventDetails(eventId) {
     } catch (error) {
         console.error("Erreur lors du chargement des détails de l'événement:", error);
     }
-}
-const mobileMenu = document.getElementById('mobile-menu');
-const navList = document.querySelector('.nav-list');
-
-mobileMenu.addEventListener('click', () => {
-    navList.classList.toggle('active');
-});
-
+};
