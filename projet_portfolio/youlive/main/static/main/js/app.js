@@ -177,23 +177,23 @@ function loadEventDetails(eventId) {
             {
                 id: 'youlive1',
                 streamUrls: [
-                    'https://studio.youtube.com/channel/UCLRhq61iubIB4x4M-sjL5vw/livestreaming',
-                    'https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID2'
-                ],
+                     'https://youtube.com/live/529XcHSYG4Q?feature=share',
+                     'https://youtube.com/live/529XcHSYG4Q?feature=share'
+                 ],
                 videos: [
-                    "https://www.w3schools.com/html/mov_b.mp4",
+                    'https://www.w3schools.com/html/mov_b.mp4',
                     'https://www.w3schools.com/html/mov_bbb.mp4'
                 ],
                 photos: [
-                    "https://via",
+                    'https://via',
                     'https://via.placeholder.com/150'
                 ]
             },
             {
                 id: '2',
                 streamUrls: [
-                    'https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID1',
-                    'https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID2'
+                    'https://youtube.com/live/IDNBHQHOymM?feature=share',
+                    'https://youtube.com/live/LUKbechwFx4?feature=share'
                 ],
                 videos: ['video3.mp4', 'video4.mp4'],
                 photos: ['images/event3.jpg', 'images/event4.jpg']
