@@ -3,7 +3,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    background-color: #fff;
+    background-color: #d728f1;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     position: relative;
 }
@@ -42,7 +42,7 @@
     top: 100%;
     left: 0;
     width: 100%;
-    background-color: #fff;
+    background-color: #941bea;
     padding: 1rem 0;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     opacity: 0;
@@ -71,8 +71,8 @@
 }
 
 .nav-link:hover {
-    background-color: #f5f5f5;
-    color: #007bff;
+    background-color: #463b9b;
+    color: #d291da;
     padding-left: 2.5rem;
 }
 
