@@ -10,27 +10,40 @@
     <link rel="icon" type="x-icon" href="{% static 'main/favicon.ico' %}">
 
     <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
-    <script src="{% static 'main/js/app.js' %}" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'main/css/navbar.css' %}">
 </head>
 
 <body>
-    <!-- Barre de navigation avec logo et effet au survol -->
+    <!-- Barre de navigation et effet au survol -->
     <header>
         <h1>Bienvenue sur notre plateforme interactive d'événements</h1>
-        <nav>
-            <ul class="nav-list">
-                <li><a href="{% url 'index' %}">Accueil</a></li>
-                <li><a href="{% url 'Événements' %}">Événements</a></li>
-                <li><a href="{% url 'Galerie - YOULIVE' %}">Galerie</a></li>
-                <li><a href="{% url 'Prestations - YOULIVE' %}">Prestations</a></li>
-                <li><a href="{% url 'Contact - YOULIVE' %}">Contact</a></li>
+        <nav class="navbar">
+            <!-- Menu Hamburger -->
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <!-- Menu Navigation -->
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="{% url 'index' %}" class="nav-link">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'Événements' %}" class="nav-link">Événements</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'Galerie - YOULIVE' %}" class="nav-link">Galerie</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'Prestations - YOULIVE' %}" class="nav-link">Prestations</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'Contact - YOULIVE' %}" class="nav-link">Contact</a>
+                </li>
             </ul>
         </nav>
-        <!-- Menu hamburger pour mobile -->
-        <div class="menu-toggle" id="mobile-menu">
-            <ion-icon name="menu-outline"></ion-icon>
-        </div>
     </header>
 
     <!-- Contenu principal -->
@@ -45,11 +58,15 @@
         <section class="intro-section">
             <h2>Qu'est-ce que YOULIVEVENT ?</h2>
             <br><br>
-            <p>Découvrez YOULIVEVENT, une plateforme interactive révolutionnaire pour vos événements. Avec notre service, chaque participant peut partager en direct des vidéos et contenus qui seront projetés sur des écrans sur place, créant ainsi une expérience immersive et collective.</p>
+            <p>Découvrez YOULIVEVENT, une plateforme interactive révolutionnaire pour vos événements. Avec notre
+                service, chaque participant peut partager en direct des vidéos et contenus qui seront projetés sur des
+                écrans sur place, créant ainsi une expérience immersive et collective.</p>
             <br><br>
-            <p>Nous compilons tous ces contenus pour former une capsule temporelle numérique, préservant vos souvenirs de manière innovante et durable. Grâce aux vidéos en direct, chaque participant contribue à l'événement en temps réel, qu'il soit présent ou non.</p>       
-         </section>
-            <br><br>
+            <p>Nous compilons tous ces contenus pour former une capsule temporelle numérique, préservant vos souvenirs
+                de manière innovante et durable. Grâce aux vidéos en direct, chaque participant contribue à l'événement
+                en temps réel, qu'il soit présent ou non.</p>
+        </section>
+        <br><br>
         <section class="form-section">
             <h2>Formulaire de Contact</h2>
             <form id="contactForm">
@@ -62,7 +79,7 @@
                 <label for="contactMessage">Message :</label>
                 <textarea id="contactMessage" required></textarea>
                 <button type="submit">Envoyer</button>
-           </form>
+            </form>
         </section>
     </div>
 
@@ -84,6 +101,8 @@
     <!-- Scripts ionicons pour les icônes et le menu -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="{% static 'main/js/navbar.js' %}"></script>
+    <script src="{% static 'main/js/app.js' %}"></script>
 </body>
-</html>
 
+</html>
