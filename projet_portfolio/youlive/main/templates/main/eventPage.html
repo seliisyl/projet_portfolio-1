@@ -10,21 +10,22 @@
     <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
     <script src="{% static 'main/js/app.js' %}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Include Socket.IO -->
+    <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
     <header>
         <h1>Détails de l'Événement</h1>
         <nav>
             <ul class="nav-list">
-                <li class="nav-item"><a href="{% url 'index' %}">Accueil</a></li> <!-- Lien vers la page d'accueil -->
-                <li class="nav-item"><a href="{% url 'Événements' %}">Événements</a></li> <!-- Lien vers la page des événements -->
+                <li class="nav-item"><a href="{% url 'index' %}">Accueil</a></li>
+                <li class="nav-item"><a href="{% url 'Événements' %}">Événements</a></li>
                 <li class="nav-item"><a href="{% url 'events - YOULIVE' %}">Événements</a></li>
-                <li class="nav-item"><a href="{% url 'Galerie - YOULIVE' %}">Galerie</a></li> <!-- Lien vers la galerie -->
-                <li class="nav-item"><a href="{% url 'Prestations - YOULIVE' %}">Prestations</a></li> <!-- Lien vers les prestations -->
-                <li class="nav-item"><a href="{% url 'Contact - YOULIVE' %}">Contact</a></li> <!-- Lien vers les informations de contact -->
+                <li class="nav-item"><a href="{% url 'Galerie - YOULIVE' %}">Galerie</a></li>
+                <li class="nav-item"><a href="{% url 'Prestations - YOULIVE' %}">Prestations</a></li>
+                <li class="nav-item"><a href="{% url 'Contact - YOULIVE' %}">Contact</a></li>
             </ul>
         </nav>
-        
         <div class="menu-toggle" id="mobile-menu">
             <ion-icon name="menu-outline"></ion-icon>
         </div>
@@ -34,30 +35,25 @@
         <!-- Section pour le Live Streaming -->
         <section id="live-stream">
             <h2>Live Streaming</h2>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/529XcHSYG4Q?si=4av63z0V_M7w0fxS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/529XcHSYG4Q?si=4av63z0V_M7w0fxS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/LUKbechwFx4?si=EUQIaqqnHEeSZKFr" frameborder="0" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/LUKbechwFx4?si=EUQIaqqnHEeSZKFr" frameborder="0" allowfullscreen></iframe>
         </section>
 
         <!-- Section pour les Photos et Vidéos -->
         <section id="media-gallery">
             <h2>Galerie des Invités</h2>
-            <div id="videoGallery">
-                <!-- Les vidéos téléchargées s'affichent ici -->
-            </div>
-            <div id="photoGallery">
-                <!-- Photos ajoutées ici par JavaScript -->
-            </div>
+            <div id="videoGallery"></div>
+            <div id="photoGallery"></div>
         </section>
 
         <!-- Section pour le Chat -->
         <section id="chat">
             <h2>Chat en Direct</h2>
-            <div id="chatbox">
-                <!-- Messages du chat apparaîtront ici -->
-                <div id="messages"></div>
-                <input type="text" id="chatInput" placeholder="Tapez votre message ici...">
-                <button id="sendChat">Envoyer</button>
-            </div>
+            <ul id="messages"></ul>
+            <form id="form" action="">
+                <input id="input" autocomplete="off" placeholder="Tapez votre message ici..."/>
+                <button>Envoyer</button>
+            </form>
         </section>
     </div>
 
@@ -74,10 +70,34 @@
             <a href="{% url 'Terms of Service - YOULIVE' %}">Conditions d'utilisation</a>
         </div>
     </footer>
-    
+
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="www-embed-player.js" defer></script>
     <script src="www-embed-chat.js" defer></script>
+
+    <!-- Socket.IO Chat Script -->
+    <script>
+        const socket = io();
+        const form = document.getElementById('form');
+        const input = document.getElementById('input');
+        const messages = document.getElementById('messages');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            if (input.value) {
+                socket.emit('chat message', input.value);
+                input.value = '';
+            }
+        });
+
+        socket.on('chat message', (msg) => {
+            const li = document.createElement('li');
+            li.textContent = msg;
+            messages.appendChild(li);
+            window.scrollTo(0, document.body.scrollHeight);
+        });
+    </script>
 </body>
 </html>
+
