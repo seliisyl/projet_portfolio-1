@@ -1,6 +1,8 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +10,9 @@
 
     <link rel="icon" type="x-icon" href="{% static 'main/favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
-    <script src="{% static 'main/js/app.js' %}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Include Socket.IO -->
-    <script src="/socket.io/socket.io.js"></script>
 </head>
+
 <body>
     <header>
         <h1>Détails de l'Événement</h1>
@@ -35,8 +35,12 @@
         <!-- Section pour le Live Streaming -->
         <section id="live-stream">
             <h2>Live Streaming</h2>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/LUKbechwFx4?si=EUQIaqqnHEeSZKFr" frameborder="0" allowfullscreen></iframe>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/LUKbechwFx4?si=EUQIaqqnHEeSZKFr" frameborder="0" allowfullscreen></iframe>
+            <iframe id="stream1" width="560" height="315"
+                src="https://www.youtube.com/embed/LUKbechwFx4?si=EUQIaqqnHEeSZKFr" frameborder="0"
+                allowfullscreen></iframe>
+            <iframe id="stream2" width="560" height="315"
+                src="https://www.youtube.com/embed/LUKbechwFx4?si=EUQIaqqnHEeSZKFr" frameborder="0"
+                allowfullscreen></iframe>
         </section>
 
         <!-- Section pour les Photos et Vidéos -->
@@ -51,7 +55,7 @@
             <h2>Chat en Direct</h2>
             <ul id="messages"></ul>
             <form id="form" action="">
-                <input id="input" autocomplete="off" placeholder="Tapez votre message ici..."/>
+                <input id="input" autocomplete="off" placeholder="Tapez votre message ici..." />
                 <button>Envoyer</button>
             </form>
         </section>
@@ -73,12 +77,14 @@
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="www-embed-player.js" defer></script>
-    <script src="www-embed-chat.js" defer></script>
+    <script src="{% static 'main/js/app.js' %}" defer></script>
+    <script src="{% static 'main/js/www-embed-chat.js' %}" defer></script>
+    <script src="{% static 'main/js/www-embed-player.js' %}" defer></script>
 
     <!-- Socket.IO Chat Script -->
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
     <script>
-        const socket = io();
+        const socket = io('http://localhost:3000');
         const form = document.getElementById('form');
         const input = document.getElementById('input');
         const messages = document.getElementById('messages');
@@ -99,5 +105,6 @@
         });
     </script>
 </body>
+
 </html>
 
