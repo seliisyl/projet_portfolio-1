@@ -11,6 +11,8 @@
     <link rel="icon" type="x-icon" href="{% static 'main/favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="{% static 'main/js/www-embed-chat.js' %}"></script>
+    <script src="{% static 'main/js/www-embed-player.js' %}"></script>
 </head>
 
 <body>
@@ -78,8 +80,6 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="{% static 'main/js/app.js' %}" defer></script>
-    <script src="{% static 'main/js/www-embed-chat.js' %}" defer></script>
-    <script src="{% static 'main/js/www-embed-player.js' %}" defer></script>
 
     <!-- Socket.IO Chat Script -->
     <script src="http://localhost:3000/socket.io/socket.io.js"></script>
@@ -89,12 +89,18 @@
         const input = document.getElementById('input');
         const messages = document.getElementById('messages');
 
-        form.addEventListener('submit', (event) => {
+
+        document.getElementById('form').addEventListener('submit', function (event) {
             event.preventDefault();
+            const input = document.getElementById('input');
             if (input.value) {
                 socket.emit('chat message', input.value);
                 input.value = '';
             }
+        });
+
+        socket.on('connect', () => {
+            console.log('Connected to the Sochet.io server');
         });
 
         socket.on('chat message', (msg) => {

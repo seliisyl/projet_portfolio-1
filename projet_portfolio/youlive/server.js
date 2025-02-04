@@ -8,13 +8,12 @@ const app = express();
 const server = http.createServer(app); // Création du serveur HTTP
 const io = socketIo(server); // Ajout de Socket.IO au serveur HTTP
 
+app.use(express.static(path.join(__dirname, '../main')));
+
 app.use(cors({
   origin: 'http://127.0.0.1:8000',
   methods: ['GET', 'POST'],
 }));
-
-const PORT = 3000;
-
 
 // Route pour la page d'événement
 app.get('/', (req, res) => {
@@ -37,6 +36,7 @@ io.on('connection', (socket) => {
 });
 
 // Démarrer le serveur
+const PORT = 3000;
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

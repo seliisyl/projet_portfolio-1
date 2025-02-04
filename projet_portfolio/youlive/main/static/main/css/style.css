@@ -21,13 +21,16 @@
     padding: 0;
 }
 
-body {
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
     font-family: "Open Sans", sans-serif;
     background: rgb(238, 174, 202);
     background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(233, 192, 148, 1) 100%);
     color: var(--texte-noir);
     /* Texte en noir */
-    margin: 0;
     padding-top: 20px;
 }
 
@@ -57,6 +60,7 @@ h2 {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border: 1px solid var(--bordure);
+    flex: 1;
 }
 
 .carousel {
@@ -272,6 +276,7 @@ footer {
     gap: 10px;
     flex-direction: column;
     align-items: center;
+    margin-top: auto;
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.5s ease, transform 0.5s ease;
@@ -313,10 +318,6 @@ footer.visible {
 
 }
 
-nav {
-    position: relative;
-}
-
 .nav-list {
     display: flex !important; /* Affiche les éléments en ligne */
     gap: 15px;
@@ -340,12 +341,12 @@ nav {
 }
 
 .nav-list a:hover {
-    background-color: rgb(164, 94, 197);
+    background-color: rgba(183, 29, 253, 1);
 
 }
 .nav-list.active {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 /* Styles pour les petits écrans */
@@ -353,33 +354,34 @@ nav {
     .nav-list {
         display: none;
         /* Masque le menu de navigation */
-        flex-direction: column;
+        flex-direction: row;
         /* Affiche les éléments en colonne */
         width: 100%;
         /* Prend toute la largeur */
         background-color: var(--texte-noir);
         position: absolute;
-        top: 100px;
+        top: 60px;
         /* Décalage par rapport au haut de la page */
         left: 0;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        padding: 10px 0;
+        z-index: 1000;
     }
 
     .nav-list.active {
         display: flex;
         /* Affiche le menu lorsque actif */
     }
-     .nav-list li {
-        width: 100%;
-        text-align: center;
-        padding: 15px 0;
-        border-bottom: 1px solid #eee;
-     }
 
     .menu-toggle {
         display: block;
         /* Affiche le bouton hamburger */
-        cursor: pointer;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: var(--texte-blanc);
+        /* Icône blanche */
+        font-size: 24px;
+        z-index: 1001;
     }
 }
 
