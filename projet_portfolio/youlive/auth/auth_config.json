@@ -1,0 +1,6 @@
+{
+    "domain": "dev-5do4rcizqzb338yu.eu.auth0.com",
+    "clientId": "fhxtPEH40TYiaMQ0npRPlg7ItdhXsXCV",
+    "audience": "https",
+    "scope": "openid profile email"
+  }

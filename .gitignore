@@ -8,3 +8,10 @@ package.json
 webpack.config.js
 
 node_modules/
+
+staticfiles/
+
+frontend/node_modules/
+frontend/package-lock.json
+frontend/package.json
+frontend/.gitignore

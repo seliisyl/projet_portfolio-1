@@ -16,11 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from youlive.youlive import views
+from django.conf import settings
+from django.conf.urls.static import static
+from .views import ReactAppView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('youlive.main.urls')),
-    path('api/', include('youlive.main.urls')),
+    path('', ReactAppView.as_view(), name='react_app'), # Inclure les URLs de l'application main
+    path('auth/', include('youlive.auth.urls')), # Inclure les URLs pour l'authentification
 ]
 
+# Ajouter les URLs des fichiers statiques en mode developpement
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    
