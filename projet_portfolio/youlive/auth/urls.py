@@ -1,8 +1,8 @@
 from django.urls import path
-from youlive.youlive.views import auth_login, auth_callback
+from youlive.youlive.views import auth_login, auth_callback, auth0_logout
 
 urlpatterns = [
-    path('login/', auth0_login, name='auth0_login'),
-    path('callback/', auth0_callback, name='auth0_callback'),
+    path('login/', auth_login, name='auth_login'),
+    path('callback/', auth_callback, name='auth_callback'),
     path('logout/', auth0_logout, name='auth0_logout'),
 ]

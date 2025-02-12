@@ -13,9 +13,28 @@ import os
 from dotenv import load_dotenv, find_dotenv
 from pathlib import Path
 from datetime import timedelta
+from decouple import config
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Load environment variables from .env file
+ENV_FILE = find_dotenv()
+if ENV_FILE:
+    load_dotenv(find_dotenv())
+else:
+    print("No .env file found")
+
+
+# Auth0 configuration
+AUTH0_DOMAIN = os.environ.get("AUTH0_DOMAIN")
+AUTH0_CLIENT_ID = os.environ.get("AUTH0_CLIENT_ID")
+AUTH0_CLIENT_SECRET = os.environ.get("AUTH0_CLIENT_SECRET")
+
+
+
+# Template directory
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'main', 'templates')
 
 
@@ -59,22 +78,6 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
 ]
-
-# Load environment variables from .env file
-ENV_FILE = find_dotenv()
-if ENV_FILE:
-    load_dotenv(dotenv_path=os.path.join(BASE_DIR, ".env"))
-else:
-    print("No .env file found")
-
-
-# Auth0 configuration
-AUTH0_DOMAIN = os.environ.get("AUTH0_DOMAIN")
-AUTH0_CLIENT_ID = os.environ.get("AUTH0_CLIENT_ID")
-AUTH0_CLIENT_SECRET = os.environ.get("AUTH0_CLIENT_SECRET")
-
-print(f"Auth0 Domain: {AUTH0_DOMAIN}")
-print(f"Auth0 Client ID: {AUTH0_CLIENT_ID}")
 
 ROOT_URLCONF = 'youlive.youlive.urls'
 
@@ -148,9 +151,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'main', 'static'),
+    os.path.join(BASE_DIR, 'frontend/build/static'),
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -175,7 +178,7 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION': True,
     'ALGORITHM': 'HS256',
     'SIGNING_KEY': SECRET_KEY,
-    'VERIFYING_KEY': open(os.path.join(BASE_DIR, '4ST0IE99LtnlgmYfXpA4tahErr4AQecx7VDfoHwvGkuP3lItR17GeEcAVEpWoU5g.pem')).read(),
+    # 'VERIFYING_KEY': open(os.path.join(BASE_DIR, '4ST0IE99LtnlgmYfXpA4tahErr4AQecx7VDfoHwvGkuP3lItR17GeEcAVEpWoU5g.pem')).read(),
     'AUDIENCE': None,
     'ISSUER': None,
     'AUTH_HEADER_TYPES': ('Bearer',),
