@@ -12,7 +12,9 @@ from django.views.generic import View
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from stream_chat import StreamChat
-
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
 
 # Initialize an OAuth object with the client_id and client_secret
 oauth = OAuth()
@@ -104,24 +106,24 @@ def private_policy(request):
 def terms_of_service(request):
     return render(request, 'main/terms_of_service.html')
 
-# create a view to generate GetStream tokens
-@csrf_exempt
-def get_stream_token(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        username = data.get('username')
+# Initialisation du client GetStream
+client = StreamChat(api_key=settings.STREAM_API_KEY, api_secret=settings.STREAM_API_SECRET)
 
-        STREAM_API_KEY = os.getenv('STREAM_API_KEY')
-        STREAM_API_SECRET = os.getenv('STREAM_API_SECRET')
-        client = StreamChat(api_key=STREAM_API_KEY, api_secret=STREAM_API_SECRET)
+def generate_guest_id():
+    """Génère un identifiant unique pour un invité."""
+    return 'guest_' + ''.join(random.choices(string.ascii_lowercase + string.digits, k=9))
 
-        if username:
-            user_id = username
-        else:
-            user_id = f'guest_{int(time.time())}'
+@api_view(['POST'])
+def get_token(request):
+    """Génère un token pour un utilisateur ou un invité."""
+    username = request.data.get('username')
 
-        token = client.create_token(user_id)
-        return JsonResponse({'userID': user_id, 'token': token})
+    if username:
+        user_id = username  # Utilisateur connecté
+    else:
+        user_id = generate_guest_id()  # Invité
+
+    # Générer le token avec GetStream
+    token = client.create_token(user_id)
     
-    return JsonResponse({'error': 'Invalid request'}, status=400)
-
+    return Response({"userId": user_id, "token": token})
