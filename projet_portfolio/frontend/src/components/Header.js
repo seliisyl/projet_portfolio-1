@@ -1,31 +1,28 @@
-import React from "react"; 
+import React from "react";
+import { Link } from "react-router-dom";
 
-<header>
-        <h1>Bienvenue sur notre plateforme interactive d'événements</h1>
-        <nav class="navbar">
-            <!-- Menu Hamburger -->
-            <div class="menu-toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-            <!-- Menu Navigation -->
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="{% url 'index' %}" class="nav-link">Accueil</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{% url 'Événements' %}" class="nav-link">Événements</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{% url 'Galerie - YOULIVE' %}" class="nav-link">Galerie</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{% url 'Prestations - YOULIVE' %}" class="nav-link">Prestations</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{% url 'Contact - YOULIVE' %}" class="nav-link">Contact</a>
-                </li>
-            </ul>
-        </nav>
+const Header = () => {
+  return (
+    <header style={styles.header}>
+      <h1>YOULIVEVENT</h1>
+      <nav>
+        <Link to="/">Accueil</Link>
+        <Link to="/events">Événements</Link>
+        <Link to="/gallery">Galerie</Link>
+        <Link to="/services">Services</Link>
+        <Link to="/contact">Contact</Link>
+      </nav>
     </header>
+  );
+};
+
+const styles = {
+    header: {
+      backgroundColor: "#000",
+      color: "#fff",
+      padding: "10px",
+      textAlign: "center",
+    },
+  };
+  
+  export default Header;  
