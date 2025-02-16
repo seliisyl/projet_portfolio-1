@@ -1,0 +1,93 @@
+.carousel {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-width: 750px;
+    padding: 20px;
+    width: 200%;
+  }
+  
+  .slider {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+  }
+  
+  .slide {
+    min-width: 25%;
+    height: auto;
+    scroll-snap-align: start;
+  }
+  
+  .slider_indicators {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+  }
+  
+  .indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #fff;
+    margin: 4px;
+    cursor: pointer;
+    box-shadow: #a18cd1;
+    transition: all 0.3s ease;
+  }
+  
+  .indicator:hover {
+    background-color: #fbc2eb;
+  }
+  
+  .indicator.active {
+    background-color: #fbc2eb;
+  }
+  
+  .nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+  }
+  
+  #prevBtn {
+    left: -10px;
+  }
+  
+  #nextBtn {
+    right: -10px;
+  }
+  
+  .nav-btn:hover {
+    color: #fff;
+    top: 48%;
+  }
+  
+  .slider::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+  }
+  
+  @media screen and (max-width: 680px) {
+    .carousel {
+      width: 100%;
+      margin: 0 20px;
+    }
+  
+    .slider {
+      width: 150%;
+    }
+  
+    .nav-btn {
+      display: none !important;
+    }
+  }
+
