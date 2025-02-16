@@ -4,7 +4,17 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
 import { StreamChat } from 'stream-chat';
-import 
+import Home from "./pages/Home";
+import AuthEvent from "./pages/AuthEvent";
+import Contact from "./pages/Contact";
+import EventPage from "./pages/EventPage";
+import Events from "./pages/Events";
+import Gallery from "./pages/Gallery";
+import Services from "./pages/Services";
+import TermsOfService from "./pages/TermsOfService";
+import PrivatePolicy from "./pages/PrivatePolicy";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const App = () => {
   const { loginWithRedirect, logout, user, isAuthenticated, getAccessTokenSilently } = useAuth0();
@@ -101,31 +111,24 @@ const App = () => {
   }, [isAuthenticated]);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        {!isAuthenticated ? (
-          <button onClick={() => loginWithRedirect()}>Se connecter</button>
-        ) : (
-          <div>
-            <h2>Bienvenue, {user.name}</h2>
-            <button onClick={() => logout({ returnTo: window.location.origin })}>
-              Se déconnecter
-            </button>
+    <Router>
+      <div className="App">
+        <Navbar />  
+        
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/auth-event" element={<AuthEvent />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/event-page" element={<EventPage userId={userId} token={token} />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/private-policy" element={<PrivatePolicy />} />
+        </Routes>
 
-            <h3>Message sécurisé :</h3>
-            {loading ? (
-              <p>Chargement...</p>
-            ) : (
-              <p>{message}</p>
-            )}
-          </div>
-        )}
-
-        {error && (
-          <p style={{ color: 'red' }}>⚠️ {error}</p>
-        )}
-      </header>
-    </div>
+      </div>
+    </Router>
   );
 };
 
