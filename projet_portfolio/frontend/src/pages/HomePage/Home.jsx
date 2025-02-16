@@ -1,11 +1,11 @@
 import React from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer/Footer";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 
 const Home = () => {
   return (
     <div>
-      <Navbar />
+      <Header />
       <main>
         <h2>Bienvenue sur YOULIVEVENT</h2>
         <p>Une plateforme interactive révolutionnaire pour vos événements.</p>

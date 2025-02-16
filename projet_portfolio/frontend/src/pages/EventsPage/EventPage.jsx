@@ -1,7 +1,7 @@
 import React from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer/Footer";
-import ChatComponent from "../components/Chat";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer/Footer";
+import ChatComponent from "../../components/Chat";
 
 const EventPage = ({ userId, token }) => {
   return (
